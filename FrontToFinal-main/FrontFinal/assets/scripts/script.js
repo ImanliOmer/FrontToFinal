@@ -30,9 +30,6 @@ $('.slider1').slick({
         dots: false
       }
     }
-    // You can unslick at a given breakpoint now by adding:
-    // settings: "unslick"
-    // instead of a settings object
   ]
 });
 
@@ -117,9 +114,6 @@ $(document).ready(function () {
   })
 });
 
-//#endregion contact
-
-//#region sorting
 
 
 $(document).ready(function () {
@@ -211,32 +205,20 @@ function CountBasketLength() {
 
 
 $(document).ready(function () {
-
   if (localStorage.getItem('shopcart') === null) {
     localStorage.setItem('shopcart', JSON.stringify([])); 
   }
   CountBasketLength();
-
-
   let addtocartbtn = document.querySelectorAll('.addtocart');
-
   for (let btntoadd of addtocartbtn) {
-
     btntoadd.addEventListener('click', function () {
       let reload_ = document.getElementById('reload_');
-
       let shopcart = JSON.parse(localStorage.getItem('shopcart'));
-
       let prod_id = this.parentElement.parentElement.parentElement.parentElement.id
       let prod_img_src = this.parentElement.parentElement.parentElement.children[0].children[0].src;
-
       let prod_name = this.parentElement.parentElement.children[0].innerHTML
-
       let prod_cost = this.parentElement.previousElementSibling.children[2].innerHTML;
-
-
       let prodexists = shopcart.find(x => x.Id == prod_id);
-
       if (prodexists == undefined) {
         shopcart.push({
           Id: prod_id,
@@ -249,45 +231,28 @@ $(document).ready(function () {
       else {
         prodexists.Count++;
       }
-
-
       localStorage.setItem('shopcart', JSON.stringify(shopcart));
-
       setTimeout(() => {
-
         location.reload();
         reload_.classList.remove('d-none');
         return false;
-
       }, 500);
-
       reload_.classList.add('d-none');
-
       CountBasketLength();
-
       CountBasketCost();
-
       AddToLittleBasket();
     })
   }
 });
-
-
-
 function AddToLittleBasket() {
-
   let shopcart = JSON.parse(localStorage.getItem('shopcart'));
   let little_filled_basket = document.querySelector('#polniy_basket')
   let little_empty_basket = document.querySelector('#pustoy_basket')
-
   if (shopcart.length != 0) {
-
     little_empty_basket.classList.add('d-none');
     little_filled_basket.classList.remove('d-none');
-
     let pr_small = '';
     let small_basket_inner = document.querySelector('#small_basket_innner');
-
     for (let product of shopcart) {
 
       pr_small +=
@@ -319,25 +284,17 @@ function AddToLittleBasket() {
           `
       small_basket_inner.innerHTML = pr_small;
     }
-
   }
   else {
     little_empty_basket.classList.remove('d-none');
     little_filled_basket.classList.add('d-none');
   }
-
 }
-
-
 $(document).ready(function () {
-
   let shopcart = JSON.parse(localStorage.getItem('shopcart'));
   let little_filled_basket = document.querySelector('#polniy_basket')
   let little_empty_basket = document.querySelector('#pustoy_basket')
-
-
   if (shopcart.length != 0) {
-
     little_empty_basket.classList.add('d-none');
     little_filled_basket.classList.remove('d-none');
 
@@ -375,7 +332,6 @@ $(document).ready(function () {
           `
       small_basket_inner.innerHTML = pr_small;
     }
-
   }
   else {
     little_empty_basket.classList.remove('d-none');
@@ -383,9 +339,6 @@ $(document).ready(function () {
   }
 
 });
-
-
-
 function CountBasketCost() {
   let shopcart = JSON.parse(localStorage.getItem('shopcart'));
   let total = 0;
@@ -405,10 +358,6 @@ function CountBasketCost() {
     document.getElementById('total_header_cost').innerHTML = '$0.00';
   }
 }
-
-
-
-
 $(document).ready(function () {
   let shopcart = JSON.parse(localStorage.getItem('shopcart'));
   let total = 0;
@@ -428,10 +377,6 @@ $(document).ready(function () {
     document.getElementById('total_header_cost').innerHTML = '$0.00';
   }
 });
-
-
-
-
 let shopcart = JSON.parse(localStorage.getItem('shopcart'));
 
 $(document).ready(function () {
@@ -466,9 +411,6 @@ $(document).ready(function () {
   }
 
 })
-
-
-
 let prod_inc_dec = document.querySelectorAll('.top_counter')
 
 let products_html = document.querySelectorAll('.product_html');
@@ -548,8 +490,6 @@ for (let i = 0; i < shopcart.length; i++) {
 
   }
 }
-
-
 $('#clearall').click(function () {
 
   localStorage.setItem('shopcart', JSON.stringify([]))
@@ -564,8 +504,6 @@ $('#clearall').click(function () {
   reload_.classList.add('d-none');
 
 })
-
-
 $('#refresh').click(function () {
 
   setTimeout(() => {
@@ -579,18 +517,3 @@ $('#refresh').click(function () {
   reload_.classList.add('d-none');
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
